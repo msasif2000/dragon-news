@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext);
     const handleRegister = (e) => {
+
         e.preventDefault();
         const name = e.target.name.value;
         const photo = e.target.photo.value;
@@ -11,6 +15,14 @@ const Register = () => {
         const password = e.target.password.value;
 
         console.log(name, photo, email, password);
+        createUser(email, password)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
     }
     return (
         <div>
@@ -51,7 +63,7 @@ const Register = () => {
                             <div className="form-control">
                                 <label className="label cursor-pointer">
                                     <span className="label-text">Accept <Link to="/terms&condition" className="font-bold">Term & Conditions</Link></span>
-                                    <input type="checkbox" className="checkbox checkbox-primary" required/>
+                                    <input type="checkbox" className="checkbox checkbox-primary" required />
                                 </label>
                             </div>
 

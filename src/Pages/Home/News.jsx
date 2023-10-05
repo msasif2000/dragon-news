@@ -27,7 +27,7 @@ const News = ({ info }) => {
                 <h2 className='text-xl font-bold my-2'>{title}</h2>
                 <img src={image_url} alt="" className='py-2' />
                 <p className='py-2'>{details.slice(0, 200)}...</p>
-                <Link to={`/detail/${_id}`} className='text-red-500 font-bold italic pb-4 border-b-2 block'>Read More</Link>
+                <Link to={`/detail/${_id}`} className='text-red-500 font-bold italic pb-4 border-b-2  block'>Read More</Link>
             </div>
 
             <div className='flex items-center justify-between p-4'>

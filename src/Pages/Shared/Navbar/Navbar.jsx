@@ -1,8 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import userImg from '../../../assets/user.png'
 import './Navbar.css'
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
+    const { user, userLogout } = useContext(AuthContext);
+    const handleLogout = () =>{
+        userLogout()
+        .then(result =>{
+            console.log(result);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
+    }
+
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
@@ -10,21 +23,21 @@ const Navbar = () => {
 
     </>
     return (
-        <div>
+        <div className="md:pb-24">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className=" lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52">
+                        <ul tabIndex={0} className="menu-sm dropdown-content mt-3 z-[1] p-2 w-52">
                             {navLinks}
                         </ul>
                     </div>
 
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu-horizontal px-1">
                         {navLinks}
                     </ul>
                 </div>
@@ -34,7 +47,15 @@ const Navbar = () => {
                             <img src={userImg} />
                         </div>
                     </label>
-                    <Link to="/login"><button className="btn btn-sm bg-black text-white">Login</button></Link>
+                    {
+                        user ?
+                            <button onClick={handleLogout} className="btn btn-sm bg-black text-white">Log out</button>
+                            :
+                            <Link to="/login">
+                                <button className="btn btn-sm bg-black text-white">Login</button>
+                            </Link>
+                    }
+
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-li{
+a{
     color: #000;
     text-decoration: none;
     font-size: 1.2rem;
@@ -7,11 +7,11 @@ li{
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
     &:hover{
-        background-color: #ef3f3f;
+        background-color: #d7cccc;
         color: #1e04e2;
     }
 }
-li.active{
-    background-color: #bc1c1c;
-    color: #f0e9e9;
+a.active{
+    text-decoration: underline;
+    color: #e00505;
 }
