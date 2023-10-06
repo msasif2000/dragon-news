@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -6,6 +6,8 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
     const {userLogin} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
     
     const handleLogin = (e) =>{
         e.preventDefault();
@@ -15,6 +17,8 @@ const Login = () => {
         userLogin(email, password)
         .then (result => {
             console.log(result);
+
+            navigate(location?.state ? location.state : '/');
         })
         .catch(error => {
             console.log(error);
@@ -28,7 +32,7 @@ const Login = () => {
                     <div className="text-center  ">
                         <h1 className="text-5xl font-bold">Login now!</h1>
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
                         <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
                                 <label className="label">

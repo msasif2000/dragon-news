@@ -22,7 +22,7 @@ const Home = () => {
             <Header></Header>
             <Breaking></Breaking>
             <Navbar></Navbar>
-            <div className="grid  grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div>
                     <LeftSideNav></LeftSideNav>
                 </div>
@@ -32,7 +32,7 @@ const Home = () => {
                         news.slice(0, dataLength).map(info => <News key={news._id} info={info}></News>)
                     }
                     <div className={dataLength >= news.length && 'hidden'}>
-                        <button onClick={() => setDataLength(news.length)} className="btn btn-sm btn-secondary m-4 flex mx-auto">See All</button>
+                        <button onClick={() => setDataLength(news.length)} className="btn btn-sm bg-[#D72050] text-white m-4 flex mx-auto">See All</button>
                     </div> 
                 </div>
                 <div>

@@ -12,7 +12,10 @@ import Career from './Pages/Career/Career';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import TermCondition from './TermCondition/TermCondition';
-import AuthProvider from './Provider/AuthProvider';
+import AuthProvider from './Provider/AuthProvider';                        
+import NewsDetails from './Pages/NewsDetails/NewsDetails';
+import NewsCategory from './Pages/NewsCategory/NewsCategory';
+import PrivateRoutes from './layout/PrivateRoutes';
 
 const router = createBrowserRouter([
   {
@@ -42,7 +45,17 @@ const router = createBrowserRouter([
       {
         path: "/terms&condition",
         element: <TermCondition></TermCondition>
-      }
+      },
+      {
+        path:"/detail/:_id",
+        element: <PrivateRoutes><NewsDetails></NewsDetails></PrivateRoutes>,
+        loader: () => fetch('/news.json')
+      },
+      {
+        path: "/category/:category_id",
+        element: <NewsCategory></NewsCategory>,
+        loader: () => fetch('/news.json')
+      },
     ]
   },
 ]);

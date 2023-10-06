@@ -3,8 +3,11 @@ import { BiBookmark, BiShareAlt } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import ReactStarsRating from 'react-awesome-stars-rating';
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const News = ({ info }) => {
+    const {user} = useContext(AuthContext);
     const { _id, image_url, details, author, title, total_view, rating } = info;
 
     return (
@@ -27,7 +30,12 @@ const News = ({ info }) => {
                 <h2 className='text-xl font-bold my-2'>{title}</h2>
                 <img src={image_url} alt="" className='py-2' />
                 <p className='py-2'>{details.slice(0, 200)}...</p>
-                <Link to={`/detail/${_id}`} className='text-red-500 font-bold italic pb-4 border-b-2  block'>Read More</Link>
+                {
+                    user? 
+                    <Link to={`/detail/${_id}`} className='text-red-500 font-bold italic pb-4 border-b-2  block'>Read More</Link>
+                    :
+                    <Link to="/login" className='text-red-500 font-bold italic pb-4 border-b-2  block'>Read More</Link>
+                }
             </div>
 
             <div className='flex items-center justify-between p-4'>

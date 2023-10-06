@@ -42,6 +42,12 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    {
+                        user ?
+                        <h2 className="font-bold text-pink-700">{user.email}</h2>
+                        :
+                        ''
+                    }
                     <label tabIndex={0} className=" btn btn-ghost btn-circle avatar">
                         <div className="w-8 rounded-full">
                             <img src={userImg} />
